@@ -42,7 +42,7 @@ public class BallsTest {
         //when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Balls(numbers))
-                .withMessage("총 3개의 숫자가 존재해야합니다");
+                .withMessage("총 3개의 서로 다른 수로 구성되어야 합니다.");
     }
 
     @ParameterizedTest
@@ -55,6 +55,6 @@ public class BallsTest {
         //when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Balls(numbers))
-                .withMessage("서로 다른 수로 구성되어야합니다.");
+                .withMessage("총 3개의 서로 다른 수로 구성되어야 합니다.");
     }
 }

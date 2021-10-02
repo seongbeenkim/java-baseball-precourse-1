@@ -13,27 +13,19 @@ public class Balls {
     private final Set<Ball> balls;
 
     public Balls(final List<Integer> numbers) {
-        validateSize(numbers);
         validateDuplication(numbers);
         this.balls = createBallsFrom(numbers);
-    }
-
-
-    private void validateSize(final List<Integer> numbers) {
-        if (isInvalidSize(numbers)) {
-            throw new IllegalArgumentException(String.format("총 %d개의 숫자가 존재해야합니다", STANDARD_SIZE));
-        }
-    }
-
-    private boolean isInvalidSize(final Collection<Integer> numbers) {
-        return STANDARD_SIZE != numbers.size();
     }
 
     private void validateDuplication(final List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (isInvalidSize(distinctNumbers)) {
-            throw new IllegalArgumentException("서로 다른 수로 구성되어야합니다.");
+            throw new IllegalArgumentException(String.format("총 %d개의 서로 다른 수로 구성되어야 합니다.", STANDARD_SIZE));
         }
+    }
+
+    private boolean isInvalidSize(final Collection<Integer> numbers) {
+        return STANDARD_SIZE != numbers.size();
     }
 
     private Set<Ball> createBallsFrom(final List<Integer> numbers) {
