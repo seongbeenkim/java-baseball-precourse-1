@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.in;
 
 public class StringTest {
@@ -32,5 +34,20 @@ public class StringTest {
 
         //then
         assertThat(splitStrings).containsExactly(input);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"(1,2) : 1,2", "(1,2,3) : 1,2,3"}, delimiter = ':')
+    @DisplayName("일정 구간의 문자열을 반환한다.")
+    void substring(String input, String expectedResult) {
+        //given
+        int secondLetterIndex = 1;
+        int lastLetterIndex = input.length() - 1;
+
+        //when
+        String result = input.substring(secondLetterIndex, lastLetterIndex);
+
+        //then
+        assertThat(result).isEqualTo(expectedResult);
     }
 }
