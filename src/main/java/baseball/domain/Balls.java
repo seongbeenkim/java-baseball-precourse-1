@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +11,7 @@ public class Balls {
 
     private static final int STANDARD_SIZE = 3;
 
-    private final Set<Ball> balls;
+    private final List<Ball> balls;
 
     public Balls(final List<Integer> numbers) {
         validateDuplication(numbers);
@@ -28,8 +29,8 @@ public class Balls {
         return STANDARD_SIZE != numbers.size();
     }
 
-    private Set<Ball> createBallsFrom(final List<Integer> numbers) {
-        Set<Ball> balls = new HashSet<>();
+    private List<Ball> createBallsFrom(final List<Integer> numbers) {
+        List<Ball> balls = new ArrayList<>();
 
         for (int i = 0; i < numbers.size(); i++) {
             Ball ball = new Ball(i, numbers.get(i));
@@ -37,6 +38,19 @@ public class Balls {
         }
 
         return balls;
+    }
+
+    public Status match(final Ball ballToFind) {
+        int count = 0;
+        Status status = Status.NOTHING;
+
+        while (status.isNothing() && count < balls.size()) {
+            Ball ball = balls.get(count);
+            status = ball.compareTo(ballToFind);
+            count++;
+        }
+
+        return status;
     }
 
     @Override

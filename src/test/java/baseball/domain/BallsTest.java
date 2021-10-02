@@ -57,4 +57,49 @@ public class BallsTest {
                 .isThrownBy(() -> new Balls(numbers))
                 .withMessage("총 3개의 서로 다른 수로 구성되어야 합니다.");
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 1", "1, 2", "2, 3"})
+    @DisplayName("위치, 값이 일치한 공일 경우, 스트라이크를 반환한다.")
+    void match_return_strike(int position, int number) {
+        //given
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+        Ball ball = new Ball(position, number);
+
+        //when
+        Status status = balls.match(ball);
+
+        //then
+        assertThat(status).isEqualTo(Status.STRIKE);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 2", "1, 3", "2, 1"})
+    @DisplayName("값만 일치한 공일 경우, 볼을 반환한다.")
+    void match_return_ball(int position, int number) {
+        //given
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+        Ball ball = new Ball(position, number);
+
+        //when
+        Status status = balls.match(ball);
+
+        //then
+        assertThat(status).isEqualTo(Status.BALL);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 4", "1, 5", "2, 6"})
+    @DisplayName("어떠한 값도 일치하지 않은 공일 경우, 낫싱을 반환한다.")
+    void match_return_nothing(int position, int number) {
+        //given
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+        Ball ball = new Ball(position, number);
+
+        //when
+        Status status = balls.match(ball);
+
+        //then
+        assertThat(status).isEqualTo(Status.NOTHING);
+    }
 }
