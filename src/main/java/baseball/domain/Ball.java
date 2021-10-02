@@ -1,7 +1,4 @@
-package baseball.domain.ball;
-
-import baseball.domain.ball.vo.Number;
-import baseball.domain.ball.vo.Position;
+package baseball.domain;
 
 import java.util.Objects;
 
