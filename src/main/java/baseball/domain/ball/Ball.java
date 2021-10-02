@@ -15,6 +15,22 @@ public class Ball {
         this.number = new Number(number);
     }
 
+    public Status compareTo(final Ball ball) {
+        if (this.equals(ball)) {
+            return Status.STRIKE;
+        }
+
+        if (hasSameNumber(ball.number)) {
+            return Status.BALL;
+        }
+
+        return Status.NOTHING;
+    }
+
+    private boolean hasSameNumber(final Number number) {
+        return this.number.equals(number);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
