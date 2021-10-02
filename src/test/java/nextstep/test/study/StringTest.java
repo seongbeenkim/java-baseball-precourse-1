@@ -1,14 +1,12 @@
 package nextstep.test.study;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 
 public class StringTest {
 
@@ -49,5 +47,32 @@ public class StringTest {
 
         //then
         assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, a", "1, b", "2, c"})
+    @DisplayName("특정 위치의 문자를 반환한다.")
+    void charAt(int index, char expectedResult) {
+        //given
+        String input = "abc";
+
+        //when
+        char result = input.charAt(index);
+
+        //then
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 3})
+    @DisplayName("위치 값이 문자열 길이 범위를 벗어날경우, 예외가 발생한다.")
+    void charAt_fail_index_out_of_bound(int index) {
+        //given
+        String input = "abc";
+
+        //when, then
+        assertThatThrownBy(() -> input.charAt(index))
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessage("String index out of range: " + index);
     }
 }
