@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Number {
 
-    private static final int MIN_THRESHOLD = 1;
-    private static final int MAX_THRESHOLD = 9;
+    protected static final int MIN_THRESHOLD = 1;
+    protected static final int MAX_THRESHOLD = 9;
 
     private final int number;
 

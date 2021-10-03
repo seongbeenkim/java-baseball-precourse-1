@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import nextstep.utils.Randoms;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +15,25 @@ public class Balls {
 
     private final List<Ball> balls;
 
+    public Balls() {
+        this(createAutoBalls());
+    }
+
+    private static List<Integer> createAutoBalls() {
+        Set<Integer> balls = new HashSet<>();
+
+        while (isInvalidSize(balls)) {
+            int randomNumber = Randoms.pickNumberInRange(Number.MIN_THRESHOLD, Number.MAX_THRESHOLD);
+            balls.add(randomNumber);
+        }
+
+        return new ArrayList<>(balls);
+    }
+
+    private static boolean isInvalidSize(final Collection<Integer> balls) {
+        return STANDARD_SIZE != balls.size();
+    }
+
     public Balls(final List<Integer> numbers) {
         validateDuplication(numbers);
         this.balls = createBallsFrom(numbers);
@@ -23,10 +44,6 @@ public class Balls {
         if (isInvalidSize(distinctNumbers)) {
             throw new IllegalArgumentException(String.format("총 %d개의 서로 다른 수로 구성되어야 합니다.", STANDARD_SIZE));
         }
-    }
-
-    private boolean isInvalidSize(final Collection<Integer> numbers) {
-        return STANDARD_SIZE != numbers.size();
     }
 
     private List<Ball> createBallsFrom(final List<Integer> numbers) {

@@ -1,9 +1,11 @@
 package baseball.domain;
 
+import nextstep.utils.Randoms;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mockStatic;
 
 public class BallsTest {
 
@@ -122,5 +126,21 @@ public class BallsTest {
                 () -> assertThat(result.getStrikeCount()).isEqualTo(strikeCount),
                 () -> assertThat(result.getBallCount()).isEqualTo(ballCount)
         );
+    }
+
+    @Test
+    @DisplayName("랜덤한 값으로 3개의 공이 자동으로 공 집합 객체가 생성된다.")
+    void create_auto_balls() {
+        try (MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            //given
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(1, 2, 3);
+
+            //when
+            Balls balls = new Balls();
+
+            //then
+            assertThat(balls).isEqualTo(new Balls(Arrays.asList(1, 2, 3)));
+        }
     }
 }
