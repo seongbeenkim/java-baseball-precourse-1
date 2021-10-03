@@ -52,15 +52,15 @@ public class Balls {
     }
 
     public Status match(final Ball ballToFind) {
-        int count = 0;
+        Count count = new Count();
         Status status = Status.NOTHING;
 
-        while (status.isNothing() && count < balls.size()) {
-            Ball ball = balls.get(count);
+        while (status.isNothing() && count.isLessThan(balls.size())) {
+            int currentCount = count.getCount();
+            Ball ball = balls.get(currentCount);
             status = ball.compareTo(ballToFind);
-            count++;
+            count = count.increase();
         }
-
         return status;
     }
 
