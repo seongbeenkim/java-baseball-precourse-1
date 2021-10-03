@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BallsTest {
 
@@ -101,5 +102,25 @@ public class BallsTest {
 
         //then
         assertThat(status).isEqualTo(Status.NOTHING);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1, 4, 5, 1, 0", "1, 2, 4, 2, 0", "1, 2, 3, 3, 0",
+            "5, 4, 1, 0 ,1", "2, 4, 1, 0, 2", "3, 1, 2, 0, 3",
+            "1, 3, 4, 1, 1", "1, 3 ,2, 1, 2", "4, 5, 6, 0, 0"})
+    @DisplayName("상대방의 수와 비교한 결과를 반환한다.")
+    void matchAll(int ball1, int ball2, int ball3, int strikeCount, int ballCount) {
+        //given
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+        Balls ballsToCompare = new Balls(Arrays.asList(ball1, ball2, ball3));
+
+        //when
+        Result result = balls.matchAll(ballsToCompare);
+
+        //then
+        assertAll(
+                () -> assertThat(result.getStrikeCount()).isEqualTo(strikeCount),
+                () -> assertThat(result.getBallCount()).isEqualTo(ballCount)
+        );
     }
 }

@@ -40,6 +40,17 @@ public class Balls {
         return balls;
     }
 
+    public Result matchAll(final Balls balls) {
+        Result result = new Result();
+
+        for (Ball ball : this.balls) {
+            Status status = balls.match(ball);
+            result = result.add(status);
+        }
+
+        return result;
+    }
+
     public Status match(final Ball ballToFind) {
         int count = 0;
         Status status = Status.NOTHING;
