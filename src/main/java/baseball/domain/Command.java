@@ -25,7 +25,7 @@ public enum Command {
         this.number = number;
     }
 
-    public static Command of(final int number) {
+    public static Command findByNumber(final int number) {
         Command command = COMMANDS.get(number);
 
         if (command == null) {
