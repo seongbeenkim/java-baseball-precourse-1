@@ -30,4 +30,15 @@ public class CommandTest {
                 .isThrownBy(() -> Command.of(number))
                 .withMessage("%d에 해당하는 명령어를 찾을 수 없습니다.", number);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"START, true", "EXIT, false"})
+    @DisplayName("시작 명령어인지 확인한다.")
+    void isStart(Command command, boolean expected) {
+        //when
+        boolean actual = command.isStart();
+
+        //then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

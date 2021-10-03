@@ -34,4 +34,8 @@ public enum Command {
 
         return command;
     }
+
+    public boolean isStart() {
+        return this == START;
+    }
 }
