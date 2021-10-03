@@ -35,7 +35,7 @@ public class StatusTest {
     @DisplayName("볼 여부를 반환한다.")
     void isBall(Status status, boolean expected) {
         //when
-        boolean actual = status.isNothing();
+        boolean actual = status.isBall();
 
         //then
         assertThat(actual).isEqualTo(expected);
