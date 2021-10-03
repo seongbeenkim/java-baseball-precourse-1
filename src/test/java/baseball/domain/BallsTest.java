@@ -129,7 +129,7 @@ public class BallsTest {
     }
 
     @Test
-    @DisplayName("랜덤한 값으로 3개의 공이 자동으로 공 집합 객체가 생성된다.")
+    @DisplayName("임의의 공 3개를 가진 공 집합 객체를 생성한다.")
     void create_auto_balls() {
         try (MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             //given
