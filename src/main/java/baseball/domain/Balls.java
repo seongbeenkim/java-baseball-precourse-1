@@ -5,6 +5,7 @@ import nextstep.utils.Randoms;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class Balls {
     }
 
     private static List<Integer> createAutoBalls() {
-        Set<Integer> balls = new HashSet<>();
+        Set<Integer> balls = new LinkedHashSet<>();
 
         while (isInvalidSize(balls)) {
             int randomNumber = Randoms.pickNumberInRange(Number.MIN_THRESHOLD, Number.MAX_THRESHOLD);
