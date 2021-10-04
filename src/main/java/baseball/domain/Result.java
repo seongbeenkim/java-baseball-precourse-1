@@ -2,11 +2,14 @@ package baseball.domain;
 
 public class Result {
 
+    private static final int NO_COUNT = 0;
+    private static final int ADD_UNIT = 1;
+
     private final int strikeCount;
     private final int ballCount;
 
     public Result() {
-        this(0, 0);
+        this(NO_COUNT, NO_COUNT);
     }
 
     public Result(final int strikeCount, final int ballCount) {
@@ -14,7 +17,7 @@ public class Result {
         this.ballCount = ballCount;
     }
 
-    public boolean isAllStrike() {
+    public boolean isThreeStrike() {
         return strikeCount == 3;
     }
 
@@ -28,11 +31,11 @@ public class Result {
 
     public Result add(final Status status) {
         if (status.isStrike()) {
-            return new Result(strikeCount + 1, ballCount);
+            return new Result(strikeCount + ADD_UNIT, ballCount);
         }
 
         if (status.isBall()) {
-            return new Result(strikeCount, ballCount + 1);
+            return new Result(strikeCount, ballCount + ADD_UNIT);
         }
 
         return this;

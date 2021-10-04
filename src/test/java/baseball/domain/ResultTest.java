@@ -11,16 +11,16 @@ public class ResultTest {
 
     @ParameterizedTest
     @CsvSource(value = {"3, 0, true", "2, 1, false"})
-    @DisplayName("모두 스트라이크인지 확인한다.")
-    void isAllStrike(int strikeCount, int ballCount, boolean expected) {
+    @DisplayName("3 스트라이크인지 확인한다.")
+    void isThreeStrike(int strikeCount, int ballCount, boolean expected) {
         //given
         Result result = new Result(strikeCount, ballCount);
 
         //when
-        boolean isAllStrike = result.isAllStrike();
+        boolean isThreeStrike = result.isThreeStrike();
 
         //then
-        assertThat(isAllStrike).isEqualTo(expected);
+        assertThat(isThreeStrike).isEqualTo(expected);
     }
 
     @ParameterizedTest
