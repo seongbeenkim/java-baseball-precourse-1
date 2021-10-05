@@ -74,11 +74,11 @@ public class Balls {
         Status status = Status.NOTHING;
 
         while (status.isNothing() && count.isLessThan(balls.size())) {
-            int currentCount = count.getCount();
-            Ball ball = balls.get(currentCount);
+            Ball ball = balls.get(count.getCount());
             status = ball.compareTo(otherBall);
             count = count.increase();
         }
+
         return status;
     }
 

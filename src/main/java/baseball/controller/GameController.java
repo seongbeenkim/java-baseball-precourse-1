@@ -21,8 +21,14 @@ public class GameController {
     }
 
     public void run() {
+        playGame();
+        decideToReStart();
+    }
+
+    private void playGame() {
         Computer computer = new Computer();
         Result result;
+
         do {
             Balls userBalls = createUserBalls();
             result = computer.match(userBalls);
@@ -30,7 +36,6 @@ public class GameController {
         } while (result.isNotThreeStrike());
 
         outputView.printGameEndingMessage();
-        decideToReStart();
     }
 
     private Balls createUserBalls() {
