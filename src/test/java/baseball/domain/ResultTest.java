@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class ResultTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"3, 0, false", "2, 1, true"})
+    @CsvSource(value = {"2, 1, true", "3, 0, false"})
     @DisplayName("3 스트라이크가 아닌지 확인한다.")
     void isNotThreeStrike(int strikeCount, int ballCount, boolean expected) {
         //given

@@ -30,7 +30,7 @@ public class BallTest {
     }
 
     @Test
-    @DisplayName("위치, 숫자 값이 일치할 경우, 스트라이크를 반환한다.")
+    @DisplayName("위치, 숫자 값 모두 일치할 경우, 스트라이크를 반환한다.")
     void compareTo_return_strike() {
         //given
         Ball ball = new Ball(0, 1);
@@ -56,7 +56,7 @@ public class BallTest {
     }
 
     @Test
-    @DisplayName("모두 일치하지 않을 경우, 낫싱을 반환한다.")
+    @DisplayName("위치, 숫자 값 모두 일치하지 않을 경우, 낫싱을 반환한다.")
     void compareTo_return_nothing() {
         //given
         Ball ballToCompare = new Ball(1, 2);
