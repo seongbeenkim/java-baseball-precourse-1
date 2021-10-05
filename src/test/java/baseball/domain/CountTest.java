@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class CountTest {
 
@@ -34,5 +35,14 @@ class CountTest {
 
         //then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("음수일 경우, 예외가 발생한다.")
+    void validateNegative() {
+        //when, then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Count(-1))
+                .withMessage("카운트는 최소 0 이상이여야 합니다.");
     }
 }

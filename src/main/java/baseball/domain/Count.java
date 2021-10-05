@@ -4,17 +4,24 @@ import java.util.Objects;
 
 public class Count {
 
-    private static final int DEFAULT = 0;
+    private static final int MIN_THRESHOLD = 0;
     private static final int INCREASE_UNIT = 1;
 
     private final int count;
 
     public Count() {
-        this(DEFAULT);
+        this(MIN_THRESHOLD);
     }
 
     public Count(final int count) {
+        validateNegative(count);
         this.count = count;
+    }
+
+    private void validateNegative(final int count) {
+        if (count < MIN_THRESHOLD) {
+            throw new IllegalArgumentException(String.format("카운트는 최소 %d 이상이여야 합니다.", MIN_THRESHOLD));
+        }
     }
 
     public int getCount() {
