@@ -69,14 +69,14 @@ public class Balls {
         return result;
     }
 
-    public Status match(final Ball ballToFind) {
+    public Status match(final Ball otherBall) {
         Count count = new Count();
         Status status = Status.NOTHING;
 
         while (status.isNothing() && count.isLessThan(balls.size())) {
             int currentCount = count.getCount();
             Ball ball = balls.get(currentCount);
-            status = ball.compareTo(ballToFind);
+            status = ball.compareTo(otherBall);
             count = count.increase();
         }
         return status;
