@@ -17,8 +17,8 @@ public class Result {
         this.ballCount = ballCount;
     }
 
-    public boolean isThreeStrike() {
-        return strikeCount == 3;
+    public boolean isNotThreeStrike() {
+        return strikeCount != 3;
     }
 
     public int getStrikeCount() {

@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class ResultTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"3, 0, true", "2, 1, false"})
-    @DisplayName("3 스트라이크인지 확인한다.")
-    void isThreeStrike(int strikeCount, int ballCount, boolean expected) {
+    @CsvSource(value = {"3, 0, false", "2, 1, true"})
+    @DisplayName("3 스트라이크가 아닌지 확인한다.")
+    void isNotThreeStrike(int strikeCount, int ballCount, boolean expected) {
         //given
         Result result = new Result(strikeCount, ballCount);
 
         //when
-        boolean isThreeStrike = result.isThreeStrike();
+        boolean isNotThreeStrike = result.isNotThreeStrike();
 
         //then
-        assertThat(isThreeStrike).isEqualTo(expected);
+        assertThat(isNotThreeStrike).isEqualTo(expected);
     }
 
     @ParameterizedTest
