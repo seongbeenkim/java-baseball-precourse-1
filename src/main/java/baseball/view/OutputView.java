@@ -13,20 +13,15 @@ public class OutputView {
     }
 
     public void printResult(final Result result) {
-        int strikeCount = result.getStrikeCount();
-        int ballCount = result.getBallCount();
-        if (isNothing(strikeCount, ballCount)) {
+        if (result.isNothing()) {
             System.out.println("낫싱");
             return;
         }
-        String strikeCountFormat = createStrikeCountFormat(strikeCount);
-        String ballCountFormat = createBallCountFormat(ballCount);
+
+        String strikeCountFormat = createStrikeCountFormat(result.getStrikeCount());
+        String ballCountFormat = createBallCountFormat(result.getBallCount());
         String resultFormat = String.join(DELIMITER, strikeCountFormat, ballCountFormat).trim();
         System.out.println(resultFormat);
-    }
-
-    private boolean isNothing(final int strikeCount, final int ballCount) {
-        return strikeCount == NO_COUNT && ballCount == NO_COUNT;
     }
 
     private String createStrikeCountFormat(final int strikeCount) {

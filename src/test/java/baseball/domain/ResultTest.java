@@ -39,4 +39,18 @@ public class ResultTest {
                 () -> assertThat(addedResult.getBallCount()).isEqualTo(ballCount)
         );
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0, 0, true", "1, 0, false", "0, 1, false"})
+    @DisplayName("낫싱인지 확인한다.")
+    void isNothing(int strikeCount, int ballCount, boolean expected) {
+        //given
+        Result result = new Result(strikeCount, ballCount);
+
+        //when
+        boolean isNothing = result.isNothing();
+
+        //then
+        assertThat(isNothing).isEqualTo(expected);
+    }
 }

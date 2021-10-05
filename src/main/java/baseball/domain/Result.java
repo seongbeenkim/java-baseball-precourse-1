@@ -40,4 +40,8 @@ public class Result {
 
         return this;
     }
+
+    public boolean isNothing() {
+        return strikeCount == NO_COUNT && ballCount == NO_COUNT;
+    }
 }
